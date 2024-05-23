@@ -88,9 +88,9 @@ class JumbotronBar extends HTMLElement {
     this._shadowRoot.innerHTML += `
       <div class="jumbotron" >
       <picture>
-        <source type="image/webp" srcset="images/heros/hero-image_2.webp" class="lazyload">
-        <source type="image/jpeg" srcset="images/heros/hero-image_2.jpg" class="lazyload">
-        <img class="lazyload" src="images/heros/hero-image_2.jpg" alt="hero-image">
+        <source media="(max-width: 600px)" srcset="images/heros/hero-image_2-small.jpg" class="lazyload">
+        <source type="image/jpeg" srcset="images/heros/hero-image_2.webp" class="lazyload">
+        <img class="lazyload" src="images/heros/hero-image_2-large.jpg" alt="hero-image">
       </picture>
           <div class="wrapper">
             <div class="overlay"></div>

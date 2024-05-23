@@ -12,11 +12,8 @@ class RestaurantItem extends HTMLElement {
 
   _style = null;
 
-  _shadowRoot = null;
-
   constructor() {
     super();
-    this._shadowRoot = this.attachShadow({ mode: 'open' });
     this._style = document.createElement('style');
   }
 
@@ -30,7 +27,6 @@ class RestaurantItem extends HTMLElement {
     .restaurant_item {
       display: flex;
       flex-direction: column;
-      
     }
     .restaurant_item .card {
       display: flex;
@@ -79,17 +75,16 @@ class RestaurantItem extends HTMLElement {
     a{
       text-decoration: none;
     }
-    
     `;
   }
 
   _emptyContent() {
-    this._shadowRoot.innerHTML = '';
+    this.innerHTML = '';
   }
 
   set restaurant(value) {
     this._restaurant = value;
-    // Render ulang
+    // Re-render
     this.render();
   }
 
@@ -105,23 +100,23 @@ class RestaurantItem extends HTMLElement {
     this._emptyContent();
     this._updateStyle();
 
-    this._shadowRoot.appendChild(this._style);
-    this._shadowRoot.innerHTML += `
+    this.appendChild(this._style);
+    this.innerHTML += `
     <article class="restaurant_item" id="${this._restaurant.id}">
-    <div class="card">
-      <div class="card_img_tag">
-        <img class="lazyload" src="${CONFIG.IMAGE_SMALL}/${this._restaurant.pictureId}" alt="${this._restaurant.name}">
-        <span>${this._restaurant.city}</span>
+      <div class="card">
+        <div class="card_img_tag">
+          <img class="lazyload" data-src="${CONFIG.IMAGE_SMALL}/${this._restaurant.pictureId}" alt="${this._restaurant.name}">
+          <span>${this._restaurant.city}</span>
+        </div>
+        <div class="card_text">
+          <span>Rating ${this._restaurant.rating}</span>
+          <a href='#/detail/${this._restaurant.id}'><h3>${this._restaurant.name}</h3></a>
+          <p>${this._restaurant.description}</p>
+        </div>
       </div>
-      <div class="card_text">
-      <span>Rating ${this._restaurant.rating}</span>
-      <a href='#/detail/${this._restaurant.id}'><h3>${this._restaurant.name}</h3></a>
-        <p>${this._restaurant.description}</p>
-      </div>
-    </div>
-  </article>
-    
+    </article>
     `;
   }
 }
+
 customElements.define('restaurant-item', RestaurantItem);
