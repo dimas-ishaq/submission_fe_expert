@@ -10,7 +10,7 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "lint": "eslint ./src --fix",
-    "build-serve": "webpack --config webpack.prod.js && http-server dist",
+    "build-serve": "webpack --config webpack.prod.js && node sharp.js && http-server dist",
     "e2e": "codeceptjs run --steps",
     "build-image": "node sharp.js"
   },
