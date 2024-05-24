@@ -6,9 +6,6 @@ import swRegister from './utils/sw-register';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
-const START = 10;
-const NUMBER_OF_IMAGES = 100;
-
 const appBar = document.querySelector('app-bar');
 const app = new App({
   button: appBar.shadowRoot.querySelector('#menu'),

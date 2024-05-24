@@ -69,7 +69,22 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    // new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: "static",
+      openAnalyzer: false
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src/public'),
+          to: path.resolve(__dirname, 'dist'),
+          globOptions: {
+            // CopyWebpackPlugin mengabaikan berkas yang berada di dalam folder images
+            ignore: ['**/images/**'],
+          },
+        },
+      ],
+    }),
 
     new ImageminWebpackPlugin({
       plugins: [
